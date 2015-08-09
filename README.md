@@ -1,5 +1,5 @@
 # point-line
-A demo about points and lines and mouse.
+A demo about points and lines and mouse cursor.
 
 ## Compiling
 ```Shell
@@ -7,7 +7,7 @@ make
 ```
 
 ## Usage
-```Shell
+```
 Usage   : point-line [OPTION]
 
 Options : -b       don't draw lines between nearby points
