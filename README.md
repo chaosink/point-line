@@ -10,17 +10,18 @@ make
 ```
 Usage   : point-line [OPTION]
 
-Options : -b       don't draw lines between nearby points
-          -d       remove window decoration
-          -f       enable fullscreen
-          -h       show this help message and exit
-          -m       don't draw lines between points and mouse cursor
-          -n NUM   set point number
-          -p       print time information in terminal
-          -s SIZE  set window size
+Options : -b        don't draw lines between nearby points
+          -d        remove window decoration
+          -f        enable fullscreen
+          -h        show this help message and exit
+          -m        don't draw lines between points and mouse cursor
+          -n NUM    set point number
+          -p        print time information in terminal
+          -s SPEED  set particle speed
+          -w SIZE   set window size(for example, 1920x1080)
 ```
 
-Without any options, it will run in resolution 1024x768(not fullscreen) with window decoration, drawing 200 points and lines between nearby points as well as lines between points and mouse cursor.
+Without any options, it will run in resolution 1024x768(not fullscreen) with window decoration, drawing 200 points and lines between nearby points as well as lines between points and mouse cursor, not printing time information.
 
 ## Dependencies
 [OpenGL - The Industry's Foundation for High Performance Graphics](https://www.opengl.org/)
@@ -33,7 +34,7 @@ Without any options, it will run in resolution 1024x768(not fullscreen) with win
 
 ## Examples & Screenshots
 ```Shell
-./point-line -d -f -s 1920x1080 -n 200
+./point-line -d -f -w 1920x1080 -n 200
 ```
 
 ![1.png](screenshots/1.png)
@@ -41,7 +42,7 @@ Without any options, it will run in resolution 1024x768(not fullscreen) with win
 - - -
 
 ```Shell
-./point-line -df -s1920x1080 -n1000
+./point-line -df -w1920x1080 -n1000
 ```
 
 ![2.png](screenshots/2.png)
@@ -49,7 +50,7 @@ Without any options, it will run in resolution 1024x768(not fullscreen) with win
 - - -
 
 ```Shell
-./point-line -dfs1920x1080 -n2000 -m
+./point-line -dfw1920x1080 -n2000 -m
 ```
 
 ![3.png](screenshots/3.png)
@@ -57,7 +58,7 @@ Without any options, it will run in resolution 1024x768(not fullscreen) with win
 - - -
 
 ```Shell
-./point-line -dfs1920x1080 -n4000 -m
+./point-line -dfw1920x1080 -n4000 -m
 ```
 
 ![4.png](screenshots/4.png)
@@ -65,7 +66,7 @@ Without any options, it will run in resolution 1024x768(not fullscreen) with win
 - - -
 
 ```Shell
-./point-line -d -f -s 1920x1080 -n 200 -b
+./point-line -d -f -w 1920x1080 -n 200 -b
 ```
 
 ![5.png](screenshots/5.png)
@@ -73,7 +74,7 @@ Without any options, it will run in resolution 1024x768(not fullscreen) with win
 - - -
 
 ```Shell
-./point-line -d -f -s 1920x1080 -n 4000 -b
+./point-line -d -f -w 1920x1080 -n 4000 -b
 ```
 
 ![6.png](screenshots/6.png)
@@ -81,7 +82,7 @@ Without any options, it will run in resolution 1024x768(not fullscreen) with win
 - - -
 
 ```Shell
-./point-line -d -f -s 1920x1080 -n 4000 -b
+./point-line -d -f -w 1920x1080 -n 4000 -b
 ```
 
 ![7.png](screenshots/7.png)
@@ -89,7 +90,7 @@ Without any options, it will run in resolution 1024x768(not fullscreen) with win
 - - -
 
 ```Shell
-./point-line -d -f -s 1920x1080 -n 100000 -b -m
+./point-line -d -f -w 1920x1080 -n 100000 -b -m
 ```
 
 ![8.png](screenshots/8.png)

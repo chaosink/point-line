@@ -38,8 +38,8 @@ int digit( int n ) {
 }
 
 int main( int argc, char** argv ) {
-	int oc; // 选项字符
-	while( ( oc = getopt( argc, argv, "bdfhmn:ps:" ) ) != -1 ) {
+	int oc; // option character
+	while( ( oc = getopt( argc, argv, "bdfhmn:ps:w:" ) ) != -1 ) {
 		switch( oc ) {
 			case 'b':
 				between = 0;
@@ -54,14 +54,15 @@ int main( int argc, char** argv ) {
 				printf(
 "Usage   : point-line [OPTION]\n"
 "\n"
-"Options : -b       don't draw lines between nearby points\n"
-"          -d       remove window decoration\n"
-"          -f       enable fullscreen\n"
-"          -h       show this help message and exit\n"
-"          -m       don't draw lines between points and mouse cursor\n"
-"          -n NUM   set point number\n"
-"          -p       print time information in terminal\n"
-"          -s SIZE  set window size\n");
+"Options : -b        don't draw lines between nearby points\n"
+"          -d        remove window decoration\n"
+"          -f        enable fullscreen\n"
+"          -h        show this help message and exit\n"
+"          -m        don't draw lines between points and mouse cursor\n"
+"          -n NUM    set point number\n"
+"          -p        print time information in terminal\n"
+"          -s SPEED  set particle speed\n"
+"          -w SIZE   set window size(for example, 1920x1080)\n");
 				return 0;
 				break;
 			case 'm':
@@ -71,9 +72,12 @@ int main( int argc, char** argv ) {
 				particle_num = atoi(optarg);
 				break;
 			case 'p':
-				print = 0;
+				print = 1;
 				break;
 			case 's':
+				particle_speed = atoi(optarg);
+				break;
+			case 'w':
 				window_width = atoi(optarg);
 				window_height = atoi( optarg + digit( window_width ) + 1 );
 				break;
@@ -140,7 +144,6 @@ int main( int argc, char** argv ) {
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	double time_current;
-	double time_last;
 	int frame_count = 0;
 	glfwSetTime(0);
 	do {
@@ -316,7 +319,7 @@ int main( int argc, char** argv ) {
 		double time_accurate = (++frame_count) / 60.0;
 		double time_delta = time_accurate - time_current;
 		time_delta = time_delta > 0 ? time_delta : 0;
-		if(print) printf( "%lf %lf %lf\n", time_accurate, time_current, time_delta );
+		if(print) printf( "frame_count:%d time_accurate:%lf time_current:%lf time_delta:%lf\n", frame_count, time_accurate, time_current, time_delta );
 		usleep(time_delta * 1000000);
 		glfwSwapBuffers( window );
 		glfwPollEvents();
