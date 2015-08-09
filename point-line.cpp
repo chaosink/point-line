@@ -13,8 +13,10 @@ GLFWwindow* window;
 
 int window_width = 1024;
 int window_height = 768;
+int between = 1;
 int decoration = 1;
 int fullscreen = 0;
+int mouse = 1;
 int print = 0;
 const int max_particle_num = 100000;
 int particle_num = 200;
@@ -37,13 +39,33 @@ int digit( int n ) {
 
 int main( int argc, char** argv ) {
 	int oc; // 选项字符
-	while( ( oc = getopt( argc, argv, "dfn:pr:" ) ) != -1 ) {
+	while( ( oc = getopt( argc, argv, "bdfhmn:ps:" ) ) != -1 ) {
 		switch( oc ) {
+			case 'b':
+				between = 0;
+				break;
 			case 'd':
 				decoration = 0;
 				break;
 			case 'f':
 				fullscreen = 1;
+				break;
+			case 'h':
+				printf(
+"Usage   : point-line [OPTION]\n"
+"\n"
+"Options : -b       don't draw lines between nearby points\n"
+"          -d       remove window decoration\n"
+"          -f       enable fullscreen\n"
+"          -h       show this help message and exit\n"
+"          -m       don't draw lines between points and mouse cursor\n"
+"          -n NUM   set point number\n"
+"          -p       print time information in terminal\n"
+"          -s SIZE  set window size\n");
+				return 0;
+				break;
+			case 'm':
+				mouse = 0;
 				break;
 			case 'n':
 				particle_num = atoi(optarg);
@@ -51,7 +73,7 @@ int main( int argc, char** argv ) {
 			case 'p':
 				print = 0;
 				break;
-			case 'r':
+			case 's':
 				window_width = atoi(optarg);
 				window_height = atoi( optarg + digit( window_width ) + 1 );
 				break;
@@ -185,6 +207,9 @@ int main( int argc, char** argv ) {
 			( void* )0 // array buffer offset
 		);
 
+
+
+	if( mouse ) {	
 		glUseProgram( programID_line );
 		double xpos, ypos;
 		glfwGetCursorPos( window, &xpos, &ypos );
@@ -193,6 +218,7 @@ int main( int argc, char** argv ) {
 		glUniform1i( glGetUniformLocation( programID_line, "window_width" ), window_width );
 		glUniform1i( glGetUniformLocation( programID_line, "window_height" ), window_height );
 		glDrawArrays( GL_POINTS, 0, particle_num );
+	}
 
 
 
@@ -201,6 +227,7 @@ int main( int argc, char** argv ) {
 
 
 
+	if( between ) {
 		float dist;
 		int vertex_num = 0;
 		for( int i = 0; i < particle_num; i++ )
@@ -278,6 +305,7 @@ int main( int argc, char** argv ) {
 					);
 					glDrawArrays( GL_LINES, 0, vertex_num);
 			}*/
+	}
 
 
 
