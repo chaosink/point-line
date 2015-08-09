@@ -21,7 +21,7 @@ Options : -b        don't draw lines between nearby points
           -w SIZE   set window size(for example, 1920x1080)
 ```
 
-Without any options, it will run in resolution 1024x768(not fullscreen) with window decoration, drawing 200 points and lines between nearby points as well as lines between points and mouse cursor, not printing time information.
+Without any options, it will run in resolution 1024x768(not fullscreen) with window decoration, drawing 200 points and lines between nearby points as well as lines between points and mouse cursor, not printing time information, and particle speed is 1.0.
 
 ## Dependencies
 [OpenGL - The Industry's Foundation for High Performance Graphics](https://www.opengl.org/)
