@@ -39,47 +39,70 @@ int digit( int n ) {
 
 int main( int argc, char** argv ) {
 	int oc; // option character
-	while( ( oc = getopt( argc, argv, "bdfhmn:ps:w:" ) ) != -1 ) {
+	while( ( oc = getopt( argc, argv, "bm n:s: dfw: hp" ) ) != -1 ) {
 		switch( oc ) {
 			case 'b':
 				between = 0;
 				break;
+			case 'm':
+				mouse = 0;
+				break;
+
+			case 'n':
+				particle_num = atoi(optarg);
+				break;
+			case 's':
+				particle_speed = atoi(optarg);
+				break;
+
 			case 'd':
 				decoration = 0;
 				break;
 			case 'f':
 				fullscreen = 1;
 				break;
+			case 'w':
+				window_width = atoi(optarg);
+				window_height = atoi( optarg + digit( window_width ) + 1 );
+				break;
+
 			case 'h':
 				printf(
 "Usage   : point-line [OPTION]\n"
 "\n"
-"Options : -b        don't draw lines between nearby points\n"
-"          -d        remove window decoration\n"
-"          -f        enable fullscreen\n"
-"          -h        show this help message and exit\n"
-"          -m        don't draw lines between points and mouse cursor\n"
-"          -n NUM    set point number\n"
-"          -p        print time information in terminal\n"
-"          -s SPEED  set particle speed\n"
-"          -w SIZE   set window size(for example, 1920x1080)\n");
+"Options :\n"
+"    Rendering objects:\n"
+"        -b        don't draw lines between nearby points\n"
+"        -m        don't draw lines between points and mouse cursor\n"
+"    Rendering arguments:\n"
+"        -n NUM    set point number\n"
+"        -s SPEED  set point speed\n"
+"    Window:\n"
+"        -d        remove window decoration\n"
+"        -f        enable fullscreen\n"
+"        -w SIZE   set window size(for example, 1024x768)\n"
+"    Others:\n"
+"        -h        show this help message and exit\n"
+"        -p        print time information in terminal\n"
+"\n"
+"Default options(with no options):\n"
+"    Rendering objects:\n"
+"        b: draw lines between nearby points\n"
+"        m: draw lines between points and mouse cursor\n"
+"    Rendering arguments:\n"
+"        n: point number is 200\n"
+"        s: point speed is 1.0\n"
+"    Window:\n"
+"        d: enable window decoration\n"
+"        f: disable fullscreen\n"
+"        w: window size is 1024x768\n"
+"    Others:\n"
+"        h: no help message\n"
+"        p: don't print time information in terminal\n");
 				return 0;
-				break;
-			case 'm':
-				mouse = 0;
-				break;
-			case 'n':
-				particle_num = atoi(optarg);
 				break;
 			case 'p':
 				print = 1;
-				break;
-			case 's':
-				particle_speed = atoi(optarg);
-				break;
-			case 'w':
-				window_width = atoi(optarg);
-				window_height = atoi( optarg + digit( window_width ) + 1 );
 				break;
 		}
 	}

@@ -1,5 +1,5 @@
 # point-line
-A demo about points and lines and mouse cursor.
+A graphic demo about points, lines and mouse cursor.
 
 ## Compiling
 ```Shell
@@ -10,18 +10,38 @@ make
 ```
 Usage   : point-line [OPTION]
 
-Options : -b        don't draw lines between nearby points
-          -d        remove window decoration
-          -f        enable fullscreen
-          -h        show this help message and exit
-          -m        don't draw lines between points and mouse cursor
-          -n NUM    set point number
-          -p        print time information in terminal
-          -s SPEED  set particle speed
-          -w SIZE   set window size(for example, 1920x1080)
+Options :
+    Rendering objects:
+        -b        don't draw lines between nearby points
+        -m        don't draw lines between points and mouse cursor
+    Rendering arguments:
+        -n NUM    set point number
+        -s SPEED  set point speed
+    Window:
+        -d        remove window decoration
+        -f        enable fullscreen
+        -w SIZE   set window size(for example, 1024x768)
+    Others:
+        -h        show this help message and exit
+        -p        print time information in terminal
+
+Default options(with no options):
+    Rendering objects:
+        b: draw lines between nearby points
+        m: draw lines between points and mouse cursor
+    Rendering arguments:
+        n: point number is 200
+        s: point speed is 1.0
+    Window:
+        d: enable window decoration
+        f: disable fullscreen
+        w: window size is 1024x768
+    Others:
+        h: no help message
+        p: don't print time information in terminal
 ```
 
-Without any options, it will run in resolution 1024x768(not fullscreen) with window decoration, drawing 200 points and lines between nearby points as well as lines between points and mouse cursor, not printing time information, and particle speed is 1.0.
+With no option, it will run in resolution 1024x768(not fullscreen) with window decoration, drawing 200 points and lines between nearby points as well as lines between points and mouse cursor, not printing time information, and particle speed is 1.0.
 
 ## Dependencies
 [OpenGL - The Industry's Foundation for High Performance Graphics](https://www.opengl.org/)
