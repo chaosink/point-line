@@ -27,6 +27,8 @@ int print            = 0;    // p
 float max_dist       = 0.1;
 const int max_particle_num = 100000;
 
+int fps = 60;
+
 struct Particle {
 	glm::vec2 pos, speed;
 	glm::vec4 color;
@@ -170,7 +172,6 @@ int main(int argc, char** argv) {
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	double time_current;
 	int frame_count = 0;
 	glfwSetTime(0);
 	do {
@@ -342,8 +343,8 @@ int main(int argc, char** argv) {
 		glDisableVertexAttribArray(0);
 		glDisableVertexAttribArray(1);
 
-		time_current = glfwGetTime();
-		double time_accurate = (++frame_count) / 60.0;
+		double time_current = glfwGetTime();
+		double time_accurate = (++frame_count) / 1.0 / fps;
 		double time_delta = time_accurate - time_current;
 		time_delta = time_delta > 0 ? time_delta : 0;
 		if(print) printf("frame_count:%d time_accurate:%lf time_current:%lf time_delta:%lf\n", frame_count, time_accurate, time_current, time_delta);
